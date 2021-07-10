@@ -1,8 +1,11 @@
-
+const fetch = require('node-fetch');
 
 module.exports = async function (context, req) {
     const fullUrl = process.env.FULL_URL;
     context.log('JavaScript HTTP trigger function processed a request with full URL ' + fullUrl);
+    const fullUrlResponse = await fetch(fullUrl);
+    const tidePageText = await fullUrlResponse.text();
+    context.log(tidePageText);
 
     const name = (req.query.name || (req.body && req.body.name));
     const responseMessage = name
