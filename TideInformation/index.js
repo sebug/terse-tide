@@ -1,5 +1,8 @@
+
+
 module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
+    const fullUrl = process.env.FULL_URL;
+    context.log('JavaScript HTTP trigger function processed a request with full URL ' + fullUrl);
 
     const name = (req.query.name || (req.body && req.body.name));
     const responseMessage = name

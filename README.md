@@ -4,4 +4,5 @@ app.
 
 Writing this as a functions app - https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-node?tabs=azure-cli%2Cbrowser
 
+	func azure functionapp publish tersetide
 
