@@ -21,11 +21,23 @@ module.exports = async function (context, req) {
     context.log('High tide: ' + highTide);
     context.log('Low tide: ' + lowTide);
 
+    const result = {
+	high: highTide,
+	low: lowTide,
+	water: ''
+    };
+
+    const weatherReportP = dom.window.document.querySelector('h2 ~ p:not(.d-print-none)');
+    
+    if (weatherReportP) {
+	const m = /Wassertemperatur (\S+)/.exec(weatherReportP.innerHTML);
+	if (m) {
+	    result.water = '' + m[1];
+	}
+    }
+
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: {
-	    high: highTide,
-	    low: lowTide
-	}
+        body: result
     };
 }
